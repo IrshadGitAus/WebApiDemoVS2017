@@ -10,16 +10,18 @@ namespace WebApiDemoVS2017.Controllers
 {
     public class StudentsController : ApiController
     {
-        private StudentRespository _respository = new StudentRespository();
+        //private StudentRespository _respository = new StudentRespository();
 
-        public StudentsController()
+        private IStudentRepository _repository; 
+
+        public StudentsController(IStudentRepository repository)
         {
-
+            _repository = repository;
         }
 
         public IHttpActionResult Get()
         {
-            return Ok(_respository.GetAll());
+            return Ok(_repository.GetAll());
         }
     }
 }
